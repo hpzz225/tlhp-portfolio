@@ -10,27 +10,26 @@ export async function POST(req: Request) {
 
     const { name, email, subject, message } = body;
 
-    const result = await resend.emails.send({
+    await resend.emails.send({
       from: process.env.RESEND_FROM!,
       to: process.env.RESEND_TO!,
       replyTo: email,
       subject: `[Portfolio] ${subject}`,
-      html: `
-        <h2>New Contact</h2>
-
-        <p><b>Name:</b> ${name}</p>
-        <p><b>Email:</b> ${email}</p>
-
-        <p><b>Message:</b></p>
-
-        <p>${message}</p>
-      `,
+      react: ContactEmail({
+        name,
+        email,
+        subject,
+        message,
+      }),
     });
 
     return NextResponse.json({
       success: true,
+      message: "Email sent successfully.",
     });
-  } catch {
+  } catch (error) {
+    console.error(error);
+
     return NextResponse.json(
       {
         success: false,
