@@ -72,7 +72,7 @@ export const Hero = () => {
 
                 <div className="relative w-full h-full">
                   <Image
-                    src="/images/phuoc.png.jpg"
+                    src="/images/phuoc.png"
                     alt="Phuoc - Frontend Developer"
                     fill
                     className="object-cover rounded-2xl"
