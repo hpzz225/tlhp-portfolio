@@ -6,6 +6,9 @@ import { motion } from "framer-motion";
 import { Calendar, Mail, MapPin, Phone, Send } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 
 export const Contact = () => {
   const {
@@ -159,12 +162,11 @@ export const Contact = () => {
                   >
                     Your Name *
                   </label>
-                  <input
+                  <Input
                     id="name"
                     type="text"
                     placeholder="Enter your name"
                     {...register("name")}
-                    className="w-full rounded-lg border border-border bg-background px-4 py-3 outline-none transition-all duration-300 focus:border-primary focus:ring-1 focus:ring-primary"
                   />
 
                   {errors.name && (
@@ -181,12 +183,11 @@ export const Contact = () => {
                   >
                     Email Address *
                   </label>
-                  <input
+                  <Input
                     id="email"
                     type="email"
                     placeholder="Enter your email"
                     {...register("email")}
-                    className="w-full rounded-lg border border-border bg-background px-4 py-3 outline-none transition-all duration-300 focus:border-primary focus:ring-1 focus:ring-primary"
                   />
 
                   {errors.email && (
@@ -204,12 +205,11 @@ export const Contact = () => {
                 >
                   Subject *
                 </label>
-                <input
+                <Input
                   id="subject"
                   type="text"
                   placeholder="What's this about?"
                   {...register("subject")}
-                  className="w-full rounded-lg border border-border bg-background px-4 py-3 outline-none transition-all duration-300 focus:border-primary focus:ring-1 focus:ring-primary"
                 />
 
                 {errors.subject && (
@@ -226,12 +226,11 @@ export const Contact = () => {
                 >
                   Message *
                 </label>
-                <textarea
+                <Textarea
                   id="message"
                   rows={6}
                   placeholder="Tell me about your project..."
                   {...register("message")}
-                  className="w-full resize-none rounded-lg border border-border bg-background px-4 py-3 outline-none transition-all duration-300 focus:border-primary focus:ring-1 focus:ring-primary"
                 />
 
                 {errors.message && (
@@ -241,17 +240,20 @@ export const Contact = () => {
                 )}
               </div>
 
-              <motion.button
-                type="submit"
-                disabled={isSubmitting}
+              <motion.div
                 whileHover={!isSubmitting ? { scale: 1.02 } : undefined}
                 whileTap={!isSubmitting ? { scale: 0.98 } : undefined}
-                className="flex w-full items-center justify-center gap-2 rounded-xl bg-foreground px-8 py-4 text-lg font-medium text-background transition-all duration-300 hover:bg-primary disabled:cursor-not-allowed disabled:opacity-60"
               >
-                <Send size={20} />
-
-                {isSubmitting ? "Sending..." : "Send Message"}
-              </motion.button>
+                <Button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full gap-2"
+                  size="lg"
+                >
+                  <Send size={20} />
+                  {isSubmitting ? "Sending..." : "Send Message"}
+                </Button>
+              </motion.div>
             </form>
           </motion.div>
         </div>

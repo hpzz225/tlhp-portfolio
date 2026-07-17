@@ -3,6 +3,8 @@
 import { motion } from "framer-motion";
 import { Github, Linkedin, Mail, ChevronDown } from "lucide-react";
 import Image from "next/image";
+import { scrollToSection } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
 
 const socialLinks = [
   { icon: Github, href: "https://github.com/hpzz225", label: "GitHub" },
@@ -16,7 +18,10 @@ const socialLinks = [
 
 export const Hero = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section
+      id="home"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+    >
       <div className="absolute top-1/4 left-1/4 w-3 h-3 bg-primary/40 rounded-full animate-pulse"></div>
       <div
         className="absolute top-3/4 right-1/3 w-2 h-2 bg-primary/30 rounded-full animate-pulse"
@@ -145,30 +150,32 @@ export const Hero = () => {
               transition={{ duration: 0.6, delay: 1 }}
               className="flex flex-wrap gap-4 pt-4 justify-center lg:justify-start"
             >
-              <motion.button
-                whileHover={{
-                  y: -3,
-                  scale: 1.05,
-                  boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.3)",
-                }}
+              <motion.div
+                whileHover={{ y: -3, scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-6 py-3 bg-foreground text-background font-mono text-sm uppercase tracking-wider transition-all duration-300 rounded-lg shadow-lg hover:shadow-xl"
               >
-                View Projects
-              </motion.button>
+                <Button
+                  onClick={() => scrollToSection("projects")}
+                  size="lg"
+                  className="font-mono uppercase tracking-wider"
+                >
+                  View Projects
+                </Button>
+              </motion.div>
 
-              <motion.button
-                whileHover={{
-                  y: -3,
-                  scale: 1.05,
-                  backgroundColor: "#fafafa",
-                  boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.2)",
-                }}
+              <motion.div
+                whileHover={{ y: -3, scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-6 py-3 border border-border font-mono text-sm uppercase tracking-wider hover:border-foreground hover:bg-accent transition-all duration-300 rounded-lg shadow-md hover:shadow-lg"
               >
-                Contact Me
-              </motion.button>
+                <Button
+                  onClick={() => scrollToSection("contact")}
+                  variant="outline"
+                  size="lg"
+                  className="font-mono uppercase tracking-wider"
+                >
+                  Contact Me
+                </Button>
+              </motion.div>
             </motion.div>
 
             <motion.div
@@ -199,6 +206,7 @@ export const Hero = () => {
       </div>
 
       <motion.div
+        onClick={() => scrollToSection("about")}
         className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 cursor-pointer"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}

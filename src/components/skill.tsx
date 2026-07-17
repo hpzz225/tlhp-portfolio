@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Code, Layers, Database, Cloud } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
 
 export const Skills = () => {
   const skillCategories = [
@@ -97,7 +98,7 @@ export const Skills = () => {
               {/* Skills */}
               <div className="flex flex-wrap gap-3">
                 {category.skills.map((skill, i) => (
-                  <motion.span
+                  <motion.div
                     key={skill}
                     initial={{ opacity: 0, scale: 0.9 }}
                     whileInView={{ opacity: 1, scale: 1 }}
@@ -106,10 +107,11 @@ export const Skills = () => {
                       delay: i * 0.04,
                     }}
                     viewport={{ once: true }}
-                    className="rounded-lg border border-border bg-accent px-4 py-2 font-mono text-sm text-foreground transition-colors duration-300 hover:bg-accent/80"
                   >
-                    {skill}
-                  </motion.span>
+                    <Badge variant="secondary" className="font-mono">
+                      {skill}
+                    </Badge>
+                  </motion.div>
                 ))}
               </div>
             </motion.div>
